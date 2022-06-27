@@ -3,7 +3,7 @@
 @section('display')
 <a class="open" href="javascript:void(0)" onclick="openMenu()"><i class="bi bi-list fs-1"></i></a>
 <div class="container-fluid padding p-0">
-    <h2 class="display-4 fs-3">Thêm danh mục</h2>
+    <h2 class="display-4 fs-3">Thêm mã giảm giá</h2>
     <hr />
     @if(count($errors)>0)
     @foreach($errors->all() as $err)

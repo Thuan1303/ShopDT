@@ -25,9 +25,22 @@ class SubcategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
         //
+        $category = new category();
+        $subcategory = new subcategory();
+        if ($req->category != null) {
+            $category->category = $req->category;
+            $category->save();
+        }
+        if ($req->subcategory != null) {
+            $subcategory->id_category = $req->old_category;
+            $subcategory->sub_category = $req->subcategory;
+            $subcategory->save();
+        }
+
+        return back()->with('notice', 'Thêm mới thành công');
     }
 
     /**

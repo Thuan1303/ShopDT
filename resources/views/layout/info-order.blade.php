@@ -53,7 +53,7 @@
                     <input id="code" class="form-control" type="text" name="code" placeholder="Nhập mã giảm" />
                 </div>
                 <div id="notify"></div>
-                <i class="font-weight-bold">*Miễn phí vận chuyển đối với nội thành TP Hồ Chí Minh với đơn hàng từ 300,000đ</i>
+                <i class="font-weight-bold">*Hóa đơn từ 50 triệu trở lên sẽ được giảm 10% trên tổng hóa đơn</i>
                 <p>Hình thức thanh toán</p>
                 <div class="col-12 w-100 p-0 pay">
                     <div class="form-group">
@@ -78,9 +78,8 @@
                 @endphp
                 <p>Giảm giá:
                 <h3>
-                    @if(Cart::getTotal() > 300000 && Cart::getTotal() < 1000000) <i class="_discnt">5% ~
-                        {{number_format(Cart::getTotal()*0.05)}}đ</i>
-                        @elseif(Cart::getTotal() > 1000000)
+                    @if(Cart::getTotal() > 30000000 && Cart::getTotal() < 50000000) <i class="_discnt">5% ~ {{number_format(Cart::getTotal()*0.05)}}đ</i>
+                        @elseif(Cart::getTotal() > 50000000)
                         <i class="_discnt">10% ~ {{number_format(Cart::getTotal()*0.1)}}đ</i>
                         @else
                         <i class="_discnt">0%</i>
@@ -89,12 +88,12 @@
                 </p>
                 <p>Thành tiền:
                 <h3>
-                    @if(Cart::getTotal() > 300000 && Cart::getTotal() < 1000000) <i class="_pay">
+                    @if(Cart::getTotal() > 30000000 && Cart::getTotal() < 50000000)
                         @php
-                        $total = Cart::getTotal() - Cart::getTotal() * 0.05;
+                        $total = Cart::getTotal() - Cart::getTotal()*0.05;
                         @endphp
-                        {{number_format($total)}} <u>đ</u></i>
-                        @elseif(Cart::getTotal() > 1000000)
+                        <i class="_pay">{{number_format($total)}} <u>đ</u></i>
+                        @elseif(Cart::getTotal() > 50000000)
                         @php
                         $total = Cart::getTotal() - Cart::getTotal()*0.1;
                         @endphp

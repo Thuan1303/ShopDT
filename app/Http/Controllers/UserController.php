@@ -98,14 +98,13 @@ class UserController extends Controller
 				'imgAvatar.max' => 'Kích thước ảnh phải ít hơn 1 MB',
 			]
 		);
-		$district = district::where('id', $request->district)->get();
-		$address = $district->first()->district . ", Phường " . $request->ward . " - " . $request->address;
+
 		$id = Auth::user()->id;
 		$user = User::find($id);
+        $user->address = $request->address;
 		$user->name = $request->fullname;
-		$user->gender = $request->gender_user;
+		$user->sex = $request->sex;
 		$user->birthday = $request->birthday;
-		$user->address = $address;
 		$user->phone = $request->phone;
 		$file = $request->file('imgAvatar');
 		if ($request->hasFile('imgAvatar')) {

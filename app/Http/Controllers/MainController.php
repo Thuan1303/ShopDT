@@ -31,7 +31,9 @@ class MainController extends Controller
 		$blog = blog::take(10)->get();
 		$keyword = $req->search;
 		if ($keyword == "") {
-			return product::all();
+			$product = product::All();
+			return
+				view('shop.search', ['product' => $product, 'keyword' => $keyword, 'mostBuy' => $mostBuy, 'sale' => $sale, 'comment' => $comment, 'blog' => $blog, 'filters' => $filters]);
 		} else {
 			$product = product::where('title', 'like', "%$keyword%")->orWhere('content', 'like', "%$keyword%")->orderBy('id', 'desc')->get();
 			return view('shop.search', ['product' => $product, 'keyword' => $keyword, 'mostBuy' => $mostBuy, 'sale' => $sale, 'comment' => $comment, 'blog' => $blog, 'filters' => $filters]);

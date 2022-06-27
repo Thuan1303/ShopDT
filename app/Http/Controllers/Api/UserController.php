@@ -68,6 +68,9 @@ class UserController extends Controller
 		$user->name = $request->name;
         $user->phone = $request->phone;
         $user->address = $request->address;
+        $user->sex = $request->sex;
+        $user->birthday = $request->birthday;
+        $user->image = $request->image;
         $user->update();
         return $request;
     }

@@ -13,7 +13,7 @@ use App\Models\Bill;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//auth fb
 Route::get('auth/facebook', 'Auth\AuthController@redirectToFacebook')->name('auth.facebook');
 Route::get('auth/facebook/callback', 'Auth\AuthController@handleFacebookCallback');
 
@@ -30,15 +30,16 @@ Route::get('ve-chung-toi', function () {
 	return view('shop/about');
 });
 
-
+//login
 Route::get('sign-up', 'AdminController@getSignup');
 Route::post('sign-up', 'UserController@store');
 Route::get('login', 'AdminController@getLogin');
 Route::post('login', 'AdminController@login')->name('login');
 Route::get('logout', 'AdminController@getLogout');
+//login fb
 Route::get('login/facebook', 'LoginController@redirectToFacebook')->name('login.facebook');
 Route::get('login/facebook/callback', 'LoginController@handleFacebookCallback');
-
+//admin
 Route::group(['prefix' => 'admin', 'middleware' => 'check.admin'], function () {
 	Route::get('/', function () {
 		$bill = bill::where('stt', 1)->get();
@@ -54,7 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check.admin'], function () {
 	Route::get('deleteBill/{id}', 'BillController@destroy');
 
 	Route::get('analyze', 'AdminController@getAnalyze');
-
+	///dashboard
 	Route::group(['prefix' => 'dashboard'], function () {
 		Route::get('them-san-pham', 'AdminController@getThemSanPham');
 		Route::post('them-san-pham', 'ProductController@store');
@@ -74,32 +75,39 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check.admin'], function () {
 		Route::get('delete/{id}', 'ProductController@destroy');
 		Route::get('danh-gia-tu-khach-hang', 'ReplyController@index');
 		Route::get('delete-comments/{id}', 'ReplyController@destroy');
+		//blog
 		Route::get('blog', 'AdminController@getBlog');
 		Route::post('blog', 'BlogController@store');
 		Route::get('deleteBlog/{id}', 'BlogController@destroy');
+		//discount
 		Route::get('ma-giam-gia', 'CodeDiscountController@index');
 		Route::post('ma-giam-gia', 'CodeDiscountController@store');
 		Route::get('deleteCode/{id}', 'CodeDiscountController@destroy');
+		//category
 		Route::get('them-danh-muc', 'AdminController@addCategory');
 		Route::post('them-danh-muc', 'CategoryController@store');
-		Route::get('delete-category/{id}', 'CategoryController@destroy');
-		Route::get('delete-subcategory/{id}', 'SubcategoryController@destroy');
+		Route::get('deleteCategory/{id}', 'CategoryController@destroy');
+		Route::get('deleteSubcategory/{id}', 'SubcategoryController@destroy');
+
 		Route::get('upload', 'AdminController@getUpload');
 		Route::post('upload', 'AdminController@postUpload');
 	});
 });
-
+//search
 Route::get('search', 'MainController@getSearch');
 Route::post('search', 'MainController@postSearch');
-
+//user
 Route::group(['prefix' => 'user', 'middleware' => 'check.user'], function () {
 	Route::get('/', 'AdminController@getTransfer');
 	Route::get('cap-nhat-tai-khoan', 'AdminController@getUpdateCus');
-	Route::post('cap-nhat-tai-khoan', 'UserController@update');
+	Route::post('/cap-nhat-tai-khoan', 'UserController@update');
 	Route::get('bao-mat', 'AdminController@getChangePass');
 	Route::post('bao-mat', 'AdminController@postBaoMat');
 });
+
 Route::get('add-cart/{id}', 'MainController@getAdd');
+
+//cart
 Route::group(['prefix' => 'cart'], function () {
 	Route::get('/', 'CartController@index');
 	Route::post('/', 'BillController@store');

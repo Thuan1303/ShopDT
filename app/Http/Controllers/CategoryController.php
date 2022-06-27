@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Cache;
+
+use Illuminate\Support\Facades\Cache;
+
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
@@ -20,10 +22,10 @@ class CategoryController extends Controller
     {
         //
         $cate = category::all();
-		if(!Cache::has('product'))
-		Cache::add('product',$cate);
-		$getCache = Cache::get('product');
-		return view('shop.product',['cate' => $getCache]);
+        if (!Cache::has('product'))
+            Cache::add('product', $cate);
+        $getCache = Cache::get('product');
+        return view('shop.product', ['cate' => $getCache]);
     }
 
     /**
@@ -36,18 +38,18 @@ class CategoryController extends Controller
     {
         //
         $category = new category();
-		$subcategory = new subcategory();
-		if($req->category != null){
-			$category->category = $req->category;
-			$category->save();
-		}
-		if($req->subcategory != null){
-			$subcategory->id_category = $req->old_category;
-			$subcategory->sub_category = $req->subcategory;
-			$subcategory->save();
-		}
+        $subcategory = new subcategory();
+        if ($req->category != null) {
+            $category->category = $req->category;
+            $category->save();
+        }
+        if ($req->subcategory != null) {
+            $subcategory->id_category = $req->old_category;
+            $subcategory->sub_category = $req->subcategory;
+            $subcategory->save();
+        }
 
-		return back()->with('notice','Thêm mới thành công');
+        return back()->with('notice', 'Thêm mới thành công');
     }
 
     /**
@@ -59,8 +61,8 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
-		$product = product::where('id_category',$id)->orderBy('id','desc')->paginate(30);
-		return view('shop.category',['product' => $product]);
+        $product = product::where('id_category', $id)->orderBy('id', 'desc')->paginate(30);
+        return view('shop.category', ['product' => $product]);
     }
 
     /**
@@ -84,7 +86,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $cate = category::find($id);
-		$cate->delete();
-		return back()->with('notice','Đã xóa danh mục sản phẩm');
+        $cate->delete();
+        return back()->with('notice', 'Đã xóa danh mục sản phẩm');
     }
 }

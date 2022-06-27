@@ -10,8 +10,8 @@
         <h2 class="text-left">Chính sách khuyến mãi</h2>
         <p class="text-justify">4. Được khuyến mãi theo đơn giá mua, cụ thể:</p>
         <p class="text-justify">
-            + giảm 5% đối với các đơn hàng tối thiểu từ 300k.<br />
-            + giảm 10% đối với các đơn hàng tối thiểu từ 1000k trở lên.
+            + giảm 5% đối với các đơn hàng tối thiểu từ 3.000.000vnđ.<br />
+            + giảm 10% đối với các đơn hàng tối thiểu từ 10.000.000vnđ trở lên.
             </pre>
         <p class="text-justify">5. Các chương trình khuyến mãi kèm theo của shop được áp dụng đối với tất cả khách hàng
             và

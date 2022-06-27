@@ -22,7 +22,7 @@
             <label for="">Loại thuộc danh mục</label>
             <select class="form-control mb-1" name="old_category">
                 @foreach($category as $cate)
-                <option value="{{$cate->id}}">{{$cate->category}}</option>
+                <option value="{{$cate->id_category}}">{{$cate->category}}</option>
                 @endforeach
             </select>
             <input class="form-control" type="text" name="subcategory" placeholder="Nhập loại" />
@@ -43,16 +43,14 @@
         <tbody>
             @foreach($category as $cate)
             <tr>
-                <th scope="row">{{$cate->id}}</th>
+                <th scope="row">{{$cate->id_category}}</th>
                 <td>{{$cate->category}}</td>
                 <td>
-                    <button class="btn btn-danger rounded-0" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal_{{$cate->id}}">Xóa <i class="far fa-trash-alt"></i></button>
+                    <button class="btn btn-danger rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$cate->id_category}}">Xóa <i class="far fa-trash-alt"></i></button>
                 </td>
-                
+
             </tr>
-            <div class="modal fade" id="exampleModal_{{$cate->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="exampleModal_{{$cate->id_category}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -67,8 +65,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                            <a href="admin/dashboard/delete-category/{{$cate->id}}"><button type="button"
-                                    class="btn btn-danger">Xóa ngay</button></a>
+                            <a href="admin/dashboard/deleteCategory/{{$cate->id_category}}"><button type="button" class="btn btn-danger">Xóa ngay</button></a>
                         </div>
                     </div>
                 </div>
@@ -91,16 +88,14 @@
 
             @foreach($sub as $sub)
             <tr>
-                <th scope="row">{{$sub->id}}</th>
-                <td>{{$sub->category->category}}</td>
+                <th scope="row">{{$sub->id_subcategory}}</th>
+                <td>{{$sub->category->namecate}}</td>
                 <td>{{$sub->sub_category}}</td>
                 <td>
-                    <button class="btn btn-danger rounded-0" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal_{{$sub->id}}">Xóa <i class="far fa-trash-alt"></i></button>
+                    <button class="btn btn-danger rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$sub->id_subcategory}}">Xóa <i class="far fa-trash-alt"></i></button>
                 </td>
             </tr>
-            <div class="modal fade" id="exampleModal_{{$sub->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="exampleModal_{{$sub->id_subcategory}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -115,8 +110,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                            <a href="admin/dashboard/delete-subcategory/{{$sub->id}}"><button type="button"
-                                    class="btn btn-danger">Xóa ngay</button></a>
+                            <a href="admin/dashboard/deleteSubcategory/{{$sub->id_subcategory}}"><button type="button" class="btn btn-danger">Xóa ngay</button></a>
                         </div>
                     </div>
                 </div>
@@ -128,9 +122,9 @@
 @endsection
 @section('script')
 <script>
-CKEDITOR.replace('content');
-CKEDITOR.config.autoParagraph = false;
-CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
+    CKEDITOR.replace('content');
+    CKEDITOR.config.autoParagraph = false;
+    CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
 </script>
 @endsection
 @section('title')
