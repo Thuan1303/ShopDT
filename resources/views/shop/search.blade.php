@@ -5,8 +5,7 @@
     <hr class="bg-dark mt-0" style="height:3px;" />
     @if(session('notice'))
     <div class="alert alert-success col-8 mx-auto">
-        <span class="closebtn float-right" style="cursor:poiter;"
-            onclick="this.parentElement.style.display='none';">&times;</span>
+        <span class="closebtn float-right" style="cursor:poiter;" onclick="this.parentElement.style.display='none';">&times;</span>
         {{session('notice')}}
     </div>
     @endif
@@ -16,13 +15,12 @@
             "<strong>{{$keyword}}</strong>"</p>
         @foreach($product as $product)
         <a href="san-pham/{{$product->id}}/{{$product->str_slug}}" title="{{$product->title}}">
-            <div class="card col-lg-3 col-md-4 col-sm-12 p-0 m-1 float-left border-0">
+            <div class="card col-l  g-3 col-md-4 col-sm-12 p-0 m-1 float-left border-0">
                 @if($product->discount > 0)
                 <span class="discount text-center">-{{$product->discount}}%</span>
                 @endif
                 <div class="thumbnail">
-                    <img id="img-{{$product->id}}" data-src="{{$product->thumbnail}}" style="object-fit:cover;" height="100%" width="100%"
-                        alt="{{$product->title}}" />
+                    <img id="img-{{$product->id}}" data-src="{{$product->thumbnail}}" style="object-fit:cover;" height="100%" width="100%" alt="{{$product->title}}" />
                 </div>
                 <div class="w-100 col-12 d-inline-block mt-2" style="overflow:hidden;max-height:30px;">
                     <ul>
@@ -32,8 +30,7 @@
                         $i = 0;
                         if(count($data) > 1){
                         foreach($data as $img){
-                        echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$product->id.'"
-                            data-src="'.$img->image.'" style="background-image:url('.$img->image.');"></li>';
+                        echo '<li class="float-left rounded-circle mr-2 more-img" data-id="'.$product->id.'" data-src="'.$img->image.'" style="background-image:url('.$img->image.');"></li>';
                         $i++;
                         }
                         }

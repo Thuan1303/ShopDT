@@ -136,10 +136,7 @@ class MainController extends Controller
 			]
 		);
 		if ($code != null && $code->time > 0 && $code->min < Cart::getTotal() && $code->expire > $now) {
-			if (Cart::getTotal() >= 300000 && Cart::getTotal() <= 1000000) {
-				$bill->total = $total = Cart::getTotal() * (0.95 - ($code->discount / 100));
-				$bill->discount = 5 + $code->discount;
-			} elseif (Cart::getTotal() > 1000000) {
+			if (Cart::getTotal() > 50000000) {
 				$bill->total = $total = Cart::getTotal() * (0.9 - ($code->discount / 100));
 				$bill->discount = 10 + $code->discount;
 			} else {
@@ -147,10 +144,7 @@ class MainController extends Controller
 				$bill->discount = $code->discount;
 			}
 		} else {
-			if (Cart::getTotal() >= 300000 && Cart::getTotal() <= 1000000) {
-				$bill->total = $total = Cart::getTotal() * 0.95;
-				$bill->discount = 5;
-			} elseif (Cart::getTotal() > 1000000) {
+			if (Cart::getTotal() > 50000000) {
 				$bill->total = $total = Cart::getTotal() * 0.9;
 				$bill->discount = 10;
 			} else {
@@ -231,10 +225,7 @@ class MainController extends Controller
 			$bill = new bill();
 			if (count($cart) > 0) {
 				if ($code != null && $code->time > 0 && $code->min < Cart::getTotal() && $code->expire > $now) {
-					if (Cart::getTotal() >= 300000 && Cart::getTotal() <= 1000000) {
-						$bill->total = Cart::getTotal() * (0.95 - ($code->discount / 100));
-						$bill->discount = 5 + $code->discount;
-					} elseif (Cart::getTotal() > 1000000) {
+					if (Cart::getTotal() > 50000000) {
 						$bill->total = Cart::getTotal() * (0.9 - ($code->discount / 100));
 						$bill->discount = 10 + $code->discount;
 					} else {
@@ -242,10 +233,7 @@ class MainController extends Controller
 						$bill->discount = $code->discount;
 					}
 				} else {
-					if (Cart::getTotal() >= 300000 && Cart::getTotal() <= 1000000) {
-						$bill->total = Cart::getTotal() * 0.95;
-						$bill->discount = 5;
-					} elseif (Cart::getTotal() > 1000000) {
+					if (Cart::getTotal() > 50000000) {
 						$bill->total = Cart::getTotal() * 0.9;
 						$bill->discount = 10;
 					} else {

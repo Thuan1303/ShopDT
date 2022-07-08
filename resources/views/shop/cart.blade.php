@@ -170,65 +170,65 @@
         var orgi = $("._discnt:eq(0)").html();
         qty = $("#order-form").attr("data-quantity");
 
-        // code.on("keyup", (e) => {
-        //     $.get("ajaxCode/" + code.val() + "/" + total, (data) => {
-        //         if (code.val() != null) {
-        //             if (data > 0) {
-        //                 value = totalPrice - (data / 100 * total);
-        //                 let percent;
-        //                 if (total > 300000 && total < 1000000) {
-        //                     percent = 5;
-        //                 } else if (total > 1000000) {
-        //                     percent = 10;
-        //                 } else {
-        //                     percent = 0;
-        //                 }
-        //                 $("._discnt:eq(0)").html(percent + "% + Mã giảm " + data + "% ~" + (total * (
-        //                     data / 100)).toLocaleString('vi', {
-        //                         style: 'currency',
-        //                         currency: 'VND'
-        //                     }));
-        //                 $("._pay:eq(0)").html((value + feeship).toLocaleString(
-        //                     'vi', {
-        //                     style: 'currency',
-        //                     currency: 'VND'
-        //                 }));
-        //             } else if (data == -1) {
-        //                 value = totalPrice + feeship;
-        //                 $("._discnt:eq(0)").html(orgi);
-        //                 $("._pay:eq(0)").html(value.toLocaleString(
-        //                     'vi', {
-        //                     style: 'currency',
-        //                     currency: 'VND'
-        //                 }));
-        //                 $("#notify").html(
-        //                     "<p class='alert alert-warning'>Giá trị đơn hàng chưa đạt điều kiện</p>"
-        //                 );
-        //             } else if (data == -2) {
-        //                 value = totalPrice + feeship;
-        //                 $("._discnt:eq(0)").html(orgi);
-        //                 $("._pay:eq(0)").html(value.toLocaleString(
-        //                     'vi', {
-        //                     style: 'currency',
-        //                     currency: 'VND'
-        //                 }));
-        //                 $("#notify").html(
-        //                     "<p class='alert alert-warning'>Mã giảm giá đã hết hiệu lực</p>");
-        //             } else if (data == 0) {
-        //                 value = totalPrice + feeship;
-        //                 $("._discnt:eq(0)").html(orgi);
-        //                 $("._pay:eq(0)").html(value.toLocaleString(
-        //                     'vi', {
-        //                     style: 'currency',
-        //                     currency: 'VND'
-        //                 }));
-        //                 $("#notify").html(null);
-        //             }
+        code.on("keyup", (e) => {
+            $.get("ajaxCode/" + code.val() + "/" + total, (data) => {
+                if (code.val() != null) {
+                    if (data > 0) {
+                        value = totalPrice - (data / 100 * total);
+                        let percent;
+                        if (total > 30000000 && total < 50000000) {
+                            percent = 5;
+                        } else if (total > 50000000) {
+                            percent = 10;
+                        } else {
+                            percent = 0;
+                        }
+                        $("._discnt:eq(0)").html(percent + "% + Mã giảm " + data + "% ~" + (total * (
+                            data / 100)).toLocaleString('vi', {
+                            style: 'currency',
+                            currency: 'VND'
+                        }));
+                        $("._pay:eq(0)").html((value + feeship).toLocaleString(
+                            'vi', {
+                                style: 'currency',
+                                currency: 'VND'
+                            }));
+                    } else if (data == -1) {
+                        value = totalPrice + feeship;
+                        $("._discnt:eq(0)").html(orgi);
+                        $("._pay:eq(0)").html(value.toLocaleString(
+                            'vi', {
+                                style: 'currency',
+                                currency: 'VND'
+                            }));
+                        $("#notify").html(
+                            "<p class='alert alert-warning'>Giá trị đơn hàng chưa đạt điều kiện</p>"
+                        );
+                    } else if (data == -2) {
+                        value = totalPrice + feeship;
+                        $("._discnt:eq(0)").html(orgi);
+                        $("._pay:eq(0)").html(value.toLocaleString(
+                            'vi', {
+                                style: 'currency',
+                                currency: 'VND'
+                            }));
+                        $("#notify").html(
+                            "<p class='alert alert-warning'>Mã giảm giá đã hết hiệu lực</p>");
+                    } else if (data == 0) {
+                        value = totalPrice + feeship;
+                        $("._discnt:eq(0)").html(orgi);
+                        $("._pay:eq(0)").html(value.toLocaleString(
+                            'vi', {
+                                style: 'currency',
+                                currency: 'VND'
+                            }));
+                        $("#notify").html(null);
+                    }
 
-        //         }
+                }
 
-        //     });
-        // });
+            });
+        });
 
         districts.change((e) => {
             let province = $("#province").val();

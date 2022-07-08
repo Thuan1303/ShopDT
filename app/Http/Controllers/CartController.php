@@ -45,16 +45,16 @@ class CartController extends Controller
 	public function update($id, $qty)
 	{
 		//if ($id == Cart::getContent()->first()->id) {
-			Cart::update(
-				$id,
-				array(
-					'quantity' => array(
-						'relative' => false,
-						'value' => $qty
-					),
-				)
-			);
-			return Cart::getTotal();
+		Cart::update(
+			$id,
+			array(
+				'quantity' => array(
+					'relative' => false,
+					'value' => $qty
+				),
+			)
+		);
+		return Cart::getTotal();
 		//}
 	}
 

@@ -78,35 +78,29 @@
                 @endphp
                 <p>Giảm giá:
                 <h3>
-                    @if(Cart::getTotal() > 30000000 && Cart::getTotal() < 50000000) <i class="_discnt">5% ~ {{number_format(Cart::getTotal()*0.05)}}đ</i>
-                        @elseif(Cart::getTotal() > 50000000)
-                        <i class="_discnt">10% ~ {{number_format(Cart::getTotal()*0.1)}}đ</i>
-                        @else
-                        <i class="_discnt">0%</i>
-                        @endif
+                    @if(Cart::getTotal() > 50000000)
+                    <i class="_discnt">10% ~ {{number_format(Cart::getTotal()*0.1)}}đ</i>
+                    @else
+                    <i class="_discnt">0%</i>
+                    @endif
                 </h3>
                 </p>
                 <p>Thành tiền:
                 <h3>
-                    @if(Cart::getTotal() > 30000000 && Cart::getTotal() < 50000000)
-                        @php
-                        $total = Cart::getTotal() - Cart::getTotal()*0.05;
-                        @endphp
-                        <i class="_pay">{{number_format($total)}} <u>đ</u></i>
-                        @elseif(Cart::getTotal() > 50000000)
-                        @php
-                        $total = Cart::getTotal() - Cart::getTotal()*0.1;
-                        @endphp
-                        <i class="_pay">{{number_format($total)}} <u>đ</u></i>
-                        @else
-                        @php
-                        $total = Cart::getTotal();
-                        @endphp
-                        <i class="_pay">{{number_format($total)}} <u>đ</u></i>
-                        @endif
-                        @php 
-                            session(['totalPrice' => $total]);
-                        @endphp
+                    @if(Cart::getTotal() > 50000000)
+                    @php
+                    $total = Cart::getTotal() - Cart::getTotal()*0.1;
+                    @endphp
+                    <i class="_pay">{{number_format($total)}} <u>đ</u></i>
+                    @else
+                    @php
+                    $total = Cart::getTotal();
+                    @endphp
+                    <i class="_pay">{{number_format($total)}} <u>đ</u></i>
+                    @endif
+                    @php
+                    session(['totalPrice' => $total]);
+                    @endphp
                 </h3>
                 </p>
                 <button class="btn btn-danger w-100 mb-2">Đặt hàng ngay</button>

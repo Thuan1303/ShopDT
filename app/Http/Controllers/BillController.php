@@ -21,10 +21,11 @@ class BillController extends Controller
 	{
 		//
 		$payment = bill::orderBy('id', 'desc')->get();
-		$recieved = bill::where("stt", 4)->get();
 		$confirm = bill::where("stt", 1)->get();
+		$confirmed = bill::where("stt", 2)->get();
 		$transfering = bill::where("stt", 3)->get();
-		return view('shop.admin.bills', ['bills' => $payment, 'confirm' => $confirm, 'transfering' => $transfering, 'recieved' => $recieved]);
+		$recieved = bill::where("stt", 4)->get();
+		return view('shop.admin.bills', ['bills' => $payment, 'confirm' => $confirm, 'confirmed' => $confirmed, 'recieved' => $recieved, 'transfering' => $transfering]);
 	}
 
 	/**
@@ -64,10 +65,7 @@ class BillController extends Controller
 			$now = Carbon::now("Asia/Ho_Chi_Minh");
 			$bill->customer = $req->customer;
 			if ($code != null && $code->time > 0 && $code->min < Cart::getTotal() && $code->expire > $now) {
-				if (Cart::getTotal() >= 300000 && Cart::getTotal() <= 1000000) {
-					$bill->total = Cart::getTotal() * (0.95 - ($code->discount / 100));
-					$bill->discount = 5 + $code->discount;
-				} elseif (Cart::getTotal() > 1000000) {
+				if (Cart::getTotal() > 50000000) {
 					$bill->total = Cart::getTotal() * (0.9 - ($code->discount / 100));
 					$bill->discount = 10 + $code->discount;
 				} else {
@@ -77,10 +75,7 @@ class BillController extends Controller
 				$code->time--;
 				$code->save();
 			} else {
-				if (Cart::getTotal() >= 300000 && Cart::getTotal() <= 1000000) {
-					$bill->total = Cart::getTotal() * 0.95;
-					$bill->discount = 5;
-				} elseif (Cart::getTotal() > 1000000) {
+				if (Cart::getTotal() > 50000000) {
 					$bill->total = Cart::getTotal() * 0.9;
 					$bill->discount = 10;
 				} else {
@@ -88,7 +83,7 @@ class BillController extends Controller
 					$bill->discount = 0;
 				}
 			}
-			$bill->address = $req->address.", ".$req->district.", ".$req->province;
+			$bill->address = $req->address . ", " . $req->district . ", " . $req->province;
 			$bill->phone = $req->phone;
 			$bill->email = $req->email;
 			$bill->stt = 1;
@@ -108,7 +103,7 @@ class BillController extends Controller
 				$payment->save();
 			}
 			$date = Carbon::parse($bill->created_at);
-			$urlInvoice = "/invoice/tsi".$date->format('i').$date->format('Y').$date->format('m').$bill->id;
+			$urlInvoice = "/invoice/tsi" . $date->format('i') . $date->format('Y') . $date->format('m') . $bill->id;
 			Cart::clear();
 			return redirect($urlInvoice)->with('success', 'Đặt hàng thành công');
 		} else {

@@ -11,9 +11,9 @@ class ShipController extends Controller
     {
         $data = array(
             "pick_province" => "TP Hồ Chí Minh",
-            "pick_district" => "Quận Tân Phú",
-            "pick_ward" => "Phường Tân Sơn Nhì",
-            "pick_street" => "Đường Nguyễn Văn Săng",
+            "pick_district" => "Quận 12",
+            "pick_ward" => "Phường Trung Mỹ Tây",
+            "pick_street" => "Đường Tô Ký",
             "province" => $province,
             "district" => $district,
             "weight" => 50 * $qty,
@@ -28,7 +28,7 @@ class ShipController extends Controller
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_HTTPHEADER => array(
-                "Token: 3AB6CF0Ee39F0b12C1f6669FDf1895de4c7dF2Bf",
+                "Token:3AB6CF0Ee39F0b12C1f6669FDf1895de4c7dF2Bf",
             ),
         ));
 
