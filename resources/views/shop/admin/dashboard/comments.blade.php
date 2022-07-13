@@ -26,17 +26,13 @@
       @endphp
       <tr>
         <th scope="row">{{$rep->reply}}</th>
-        <td><img src="{{$rep->product->thumbnail}}" alt="{{$rep->product->title}}" width="100px"
-            title="{{$rep->product->title}}"></td>
-        <td><img class="rounded-circle" src="{{$urlImage}}" alt="{{$rep->user->name}}" title="{{$rep->user->name}}"
-            width="60px"></td>
+        <td><img src="{{$rep->product->thumbnail}}" alt="{{$rep->product->title}}" width="100px" title="{{$rep->product->title}}"></td>
+        <td><img class="rounded-circle" src="{{$urlImage}}" alt="{{$rep->user->name}}" title="{{$rep->user->name}}" width="60px"></td>
         <td>{{$rep->user->email}}</td>
         <td>{{$rep->content}}</td>
-        <td><button class="btn btn-danger" data-toggle="modal" data-target="#modalDelete_{{$rep->id}}">Xóa <i
-              class="far fa-trash-alt"></i></button></td>
+        <td> <button class="btn btn-danger rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal_{{$rep->id}}">Xóa <i class="far fa-trash-alt"></i></button></td>
       </tr>
-      <div class="modal fade" id="modalDelete_{{$rep->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+      <div class="modal fade" id="exampleModal_{{$rep->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
