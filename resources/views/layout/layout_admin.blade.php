@@ -46,7 +46,7 @@
         <p class="float-right py-2">Xin chào, {{Auth::user()->name}}</p>
     </div>
     <!---DASHBOARD-->
-    <div id="menu" class="col-lg-3 col-md-5 col-sm-12 bg-dark float-left position-fixed dashboard">
+    <div id="menu" class="col-lg-2 col-md-5 col-sm-12 bg-dark float-left position-fixed dashboard font-weight-bold " > 
         <img src="image/_logo1.png" class="pl-3" height="60px" style="object-fit:contain;" />
         <a id="close" class="col-12 text-right" href="javascript:void(0)" onclick="closeMenu()"><i
                 class="bi bi-x"></i></a>

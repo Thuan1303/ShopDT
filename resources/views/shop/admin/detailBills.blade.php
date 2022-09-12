@@ -5,7 +5,7 @@
 <h2 class="display-4" style="font-size:36px">Chi tiết đơn hàng của {{$bill->customer}}</h2>
 @foreach($detail as $pay)
 	<div class="col-12 p-2 mb-2 d-flex flex-row flex-nowrap" style="height:200px">
-		<img class="float-left" src="{{$pay->product->thumbnail}}" height="100%" style="object-fit:contain"/>
+		<img class="float-left" src="{{$pay->image}}" height="100%" style="object-fit:contain"/>
 		<div class="float-left ml-4">
 			<p>{{$pay->name}}</hp>
 			<p>{{$pay->attr}}</p>
